@@ -1,0 +1,4 @@
+#!/bin/sh
+
+yarn lint-staged-files --debug
+

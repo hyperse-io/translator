@@ -1,0 +1,25 @@
+{
+  "extends": "@hyperse/eslint-config-hyperse/tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "rootDir": ".",
+    "outDir": "dist",
+    "incremental": false,
+    "types": ["vitest/globals"],
+    "paths": {},
+    "target": "ES2019",
+    "module": "commonjs",
+    "moduleResolution": "Node",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "isolatedModules": true,
+    "jsx": "preserve"
+  },
+  "exclude": ["**/node_modules", "**/.*/", "dist", "build"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "vitest.config.mts",
+    "src/main.mts"
+  ]
+}

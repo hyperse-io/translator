@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "rootDir": "./src",
+    "incremental": false,
+    "paths": {},
+    "target": "ES2019",
+    "module": "commonjs",
+    "moduleResolution": "Node"
+  },
+  "exclude": ["**/*.stories.tsx", "**/*.stories.mdx", ".storybook/**", "dist"]
+}
