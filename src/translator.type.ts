@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import type { IntlError } from './intl-error.js';
 
 export type AbstractIntlMessages = {
@@ -46,6 +47,7 @@ export type IntlConfiguration = {
     key: string;
     namespace?: string;
   }): string;
+
   /** This callback will be invoked when an error is encountered during
    * resolving a message or formatting it. This defaults to `console.error` to
    * keep your app running. You can customize the handling by taking
@@ -62,6 +64,7 @@ export type InitializedIntlConfiguration = IntlConfiguration & {
   getMessageFallback: NonNullable<IntlConfiguration['getMessageFallback']>;
 };
 
+// From IntlMessageFormat#format
 export type TranslationValue =
   | string
   | number
@@ -70,11 +73,12 @@ export type TranslationValue =
   | null
   | undefined;
 
-export type TranslationValues = Record<string, TranslationValue>;
 // We could consider renaming this to `ReactRichTranslationValues` and defining
 // it in the `react` namespace if the core becomes useful to other frameworks.
 // It would be a breaking change though, so let's wait for now.
 export type RichTranslationValues = Record<
   string,
-  TranslationValue | ((chunks: string) => string)
+  TranslationValue | ((chunks: ReactNode) => ReactNode)
 >;
+
+export type TranslationValues = Record<string, TranslationValue>;

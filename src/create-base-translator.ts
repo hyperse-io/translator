@@ -1,3 +1,4 @@
+import { isValidElement, ReactElement, ReactNode } from 'react';
 import type { Formats } from 'intl-messageformat';
 import { IntlMessageFormat } from 'intl-messageformat';
 import { IntlError, IntlErrorCode } from './intl-error.js';
@@ -8,34 +9,59 @@ import type {
   NestedKeyOf,
   NestedValueOf,
   RichTranslationValues,
-  TranslationValues,
 } from './translator.type.js';
 import {
   defaultGetMessageFallback,
+  getMessagesOrError,
   prepareTranslationValues,
   resolvePath,
 } from './utils.js';
 
 export type CreateBaseTranslatorProps<Messages> =
   InitializedIntlConfiguration & {
-    cachedFormatsByLocale?: Record<string, Record<string, unknown>>;
-    defaultTranslationValues?: TranslationValues;
+    cachedFormatsByLocale?: Record<string, Record<string, IntlMessageFormat>>;
+    defaultTranslationValues?: RichTranslationValues;
     namespace?: string;
+    messages: Messages;
     messagesOrError: Messages;
   };
+
+function getPlainMessage(candidate: string, values?: unknown) {
+  if (values) return undefined;
+
+  const unescapedMessage = candidate.replace(/'([{}])/gi, '$1');
+
+  // Placeholders can be in the message if there are default values,
+  // or if the user has forgotten to provide values. In the latter
+  // case we need to compile the message to receive an error.
+  const hasPlaceholders = /<|{/.test(unescapedMessage);
+
+  if (!hasPlaceholders) {
+    return unescapedMessage;
+  }
+
+  return undefined;
+}
 
 export function createBaseTranslator<
   Messages extends AbstractIntlMessages,
   NestedKey extends NestedKeyOf<Messages>,
 >({
   locale,
-  messagesOrError,
   namespace,
-  cachedFormatsByLocale,
+  messages,
+  cachedFormatsByLocale = {},
   defaultTranslationValues,
   onError,
   getMessageFallback = defaultGetMessageFallback,
-}: CreateBaseTranslatorProps<Messages>) {
+}: Omit<CreateBaseTranslatorProps<Messages>, 'messagesOrError'>) {
+  const messagesOrError = getMessagesOrError<Messages>({
+    locale,
+    messages,
+    namespace,
+    onError,
+  }) as Messages | IntlError;
+
   function getFallbackFromErrorAndNotify(
     key: string,
     code: IntlErrorCode,
@@ -45,6 +71,7 @@ export function createBaseTranslator<
     onError(error);
     return getMessageFallback({ error, key, namespace });
   }
+
   function translateBaseFn(
     /** Use a dot to indicate a level of nesting (e.g. `namespace.nestedLabel`). */
     key: string,
@@ -52,7 +79,7 @@ export function createBaseTranslator<
     values?: RichTranslationValues,
     /** Provide custom formats for numbers, dates and times. */
     formats?: Partial<Formats>
-  ): string {
+  ): string | ReactElement | ReactNode[] {
     if (messagesOrError instanceof IntlError) {
       // We have already warned about this during render
       return getMessageFallback({
@@ -66,7 +93,7 @@ export function createBaseTranslator<
 
     let message;
     try {
-      message = resolvePath(messages, key, namespace);
+      message = resolvePath(locale, messages, key, namespace);
     } catch (error) {
       return getFallbackFromErrorAndNotify(
         key,
@@ -74,12 +101,15 @@ export function createBaseTranslator<
         (error as Error).message
       );
     }
+    // Hot path that avoids creating an `IntlMessageFormat` instance
+    const plainMessage = getPlainMessage(message as unknown as string, values);
+    if (plainMessage) return plainMessage;
 
     const cacheKey = [namespace, key, message]
       .filter((part) => part != null)
       .join('.');
 
-    let messageFormat;
+    let messageFormat: IntlMessageFormat;
     if (cachedFormatsByLocale?.[locale]?.[cacheKey]) {
       messageFormat = cachedFormatsByLocale?.[locale][cacheKey];
     } else {
@@ -93,7 +123,7 @@ export function createBaseTranslator<
         );
       }
       try {
-        messageFormat = new IntlMessageFormat(message, locale, formats);
+        messageFormat = new IntlMessageFormat(message, locale, formats, {});
       } catch (error) {
         return getFallbackFromErrorAndNotify(
           key,
@@ -111,11 +141,19 @@ export function createBaseTranslator<
     }
 
     try {
+      const toTranslateValues: RichTranslationValues = {
+        ...defaultTranslationValues,
+        ...values,
+      };
+      const toFormatValues = prepareTranslationValues(toTranslateValues);
+
       const formattedMessage = (messageFormat as IntlMessageFormat).format(
         // for rich text elements since a recent minor update. This
         // needs to be evaluated in detail, possibly also in regards
         // to be able to format to parts.
-        prepareTranslationValues({ ...defaultTranslationValues, ...values })
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        toFormatValues
       );
       if (formattedMessage == null) {
         throw new Error(
@@ -126,7 +164,10 @@ export function createBaseTranslator<
       }
 
       // Limit the function signature to return strings or React elements
-      return typeof formattedMessage === 'string'
+      return isValidElement(formattedMessage) ||
+        // Arrays of React elements
+        Array.isArray(formattedMessage) ||
+        typeof formattedMessage === 'string'
         ? formattedMessage
         : String(formattedMessage);
     } catch (error) {
@@ -165,6 +206,7 @@ export function createBaseTranslator<
 
     return result;
   }
+  translateFn.rich = translateBaseFn;
 
   return translateFn;
 }

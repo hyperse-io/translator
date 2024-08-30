@@ -19,8 +19,6 @@ Translates messages from the given namespace by using the ICU syntax.
 
 ## Usage
 
-### Case 1
-
 ```ts
 const messages = {
   Home: {
@@ -29,9 +27,21 @@ const messages = {
     nest: {
       span: 'Hello nest',
     },
+    localeStr: '{locale, select, zh {简体中文} en {English} other {Unknown}}',
+    pluralization:
+      'You have {count, plural, =0 {no followers yet} =1 {one follower} other {# followers}}.',
+    ordered: 'Ordered on {orderDate, date, long}',
+    orderedShort: 'Ordered on {orderDate, date, short}',
+    orderedCustom: 'Ordered on {orderDate, date, ::yyyyMMdd}',
   },
 };
+```
 
+### Normal translation
+
+Static messages will be used as-is
+
+```ts
 const t = createTranslator({
   locale: 'en',
   namespace: 'Home',
@@ -41,23 +51,65 @@ const t = createTranslator({
 expect(t('title')).toBe('Hello world!');
 ```
 
-### case 2
+### Rich text
+
+format rich text with custom tags and map them to React components
 
 ```ts
-it('Translate a message', () => {
-  const t = createTranslator({
-    locale: 'en',
-    namespace: 'Home',
-    messages,
-  });
-
-  expect(
-    t('rich', {
-      name: 'world',
-      b: (chunks) => `<strong>${chunks}</strong>`,
-      i: (chunks) => `<i>${chunks}</i>`,
-    })
-    // rich: '<b>Hello <i>{name}</i>!</b>',
-  ).toBe('<strong>Hello <i>world</i>!</strong>');
+const t = createTranslator({
+  locale: 'en',
+  namespace: 'Home',
+  messages,
 });
+
+const result = t.rich('rich', {
+  name: 'world',
+  b: (chunks) => <b>{chunks}</b>,
+  i: (chunks) => <i>{chunks}</i>,
+});
+
+expect(isValidElement(result)).toBe(true);
+expect(renderToString(result as any)).toBe('<b>Hello <i>world</i>!</b>');
+```
+
+### Time formats
+
+```ts
+const t = createTranslator({
+  locale: 'en',
+  namespace: 'Home',
+  messages,
+});
+const result1 = t('ordered', {
+  orderDate: new Date('2020-11-20T10:36:01.516Z'),
+});
+
+const result2 = t('orderedShort', {
+  orderDate: new Date('2020-11-20T10:36:01.516Z'),
+});
+
+const result3 = t('orderedCustom', {
+  orderDate: new Date('2020-11-20T10:36:01.516Z'),
+});
+
+expect(result1).toBe('Ordered on November 20, 2020');
+expect(result2).toBe('Ordered on 11/20/20');
+expect(result3).toBe('Ordered on 11/20/2020');
+```
+
+### Cardinal pluralization
+
+```ts
+const t = createTranslator({
+  locale: 'en',
+  messages: messages,
+});
+expect(t('Home.pluralization', { count: 3580 })).toBe(
+  'You have 3,580 followers.'
+);
+expect(
+  t('Home.localeStr', {
+    locale: 'zh',
+  })
+).toBe('简体中文');
 ```

@@ -1,5 +1,7 @@
+import { ReactElement, ReactNode } from 'react';
 import type { Formats } from 'intl-messageformat';
 import { createTranslatorImpl } from './create-translator-impl.js';
+import { defaultOnError } from './defaults.js';
 import type {
   AbstractIntlMessages,
   IntlConfiguration,
@@ -9,7 +11,7 @@ import type {
   NestedValueOf,
   RichTranslationValues,
 } from './translator.type.js';
-import { defaultGetMessageFallback, defaultOnError } from './utils.js';
+import { defaultGetMessageFallback } from './utils.js';
 
 /**
  * Translates messages from the given namespace by using the ICU syntax.
@@ -54,6 +56,25 @@ export function createTranslator<
     values?: RichTranslationValues,
     formats?: Partial<Formats>
   ): string;
+  // `rich`
+  rich<
+    TargetKey extends MessageKeys<
+      NestedValueOf<
+        { '!': IntlMessages },
+        [NestedKey] extends [never] ? '!' : `!.${NestedKey}`
+      >,
+      NestedKeyOf<
+        NestedValueOf<
+          { '!': IntlMessages },
+          [NestedKey] extends [never] ? '!' : `!.${NestedKey}`
+        >
+      >
+    >,
+  >(
+    key: TargetKey,
+    values?: RichTranslationValues,
+    formats?: Partial<Formats>
+  ): string | ReactElement | ReactNode[];
 } {
   // We have to wrap the actual function so the type inference for the optional
   // namespace works correctly. See https://stackoverflow.com/a/71529575/343045

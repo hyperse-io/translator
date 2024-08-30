@@ -4,7 +4,7 @@ import type {
   InitializedIntlConfiguration,
   NestedKeyOf,
 } from './translator.type.js';
-import { getMessagesOrError, resolveNamespace } from './utils.js';
+import { resolveNamespace } from './utils.js';
 
 export type CreateTranslatorImplProps<Messages> =
   InitializedIntlConfiguration & {
@@ -33,16 +33,15 @@ export function createTranslatorImpl<
     ...rest,
     onError,
     getMessageFallback,
-    namespace: undefined,
-    messagesOrError: getMessagesOrError({
-      messages,
-      namespace,
-    }) as Messages,
+    namespace,
+    messages,
   });
 
   function base(...args: Parameters<typeof translator>) {
     return translator(...args);
   }
-
+  base.rich = function (...args: Parameters<typeof translator>) {
+    return translator.rich(...args);
+  };
   return base;
 }

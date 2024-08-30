@@ -1,3 +1,5 @@
+import { cloneElement, isValidElement, ReactNode } from 'react';
+import { defaultOnError } from './defaults.js';
 import { IntlError, IntlErrorCode } from './intl-error.js';
 import type {
   AbstractIntlMessages,
@@ -10,11 +12,18 @@ export function resolveNamespace(namespace: string, namespacePrefix: string) {
     : namespace.slice((namespacePrefix + '.').length);
 }
 
+function joinPath(...parts: Array<string | undefined>) {
+  return parts.filter(Boolean).join('.');
+}
+
 export function resolvePath(
+  locale: string,
   messages: AbstractIntlMessages | undefined,
   key: string,
   namespace?: string
 ): AbstractIntlMessages {
+  const fullKey = joinPath(namespace, key);
+
   if (!messages) {
     throw new Error(`No messages available at \`${namespace}\`.`);
   }
@@ -26,9 +35,7 @@ export function resolvePath(
 
     if (part == null || next == null) {
       throw new Error(
-        `Could not resolve \`${key}\` in ${
-          namespace ? `\`${namespace}\`` : 'messages'
-        }.`
+        `Could not resolve \`${fullKey}\` in messages for locale \`${locale}\`.`
       );
     }
 
@@ -39,11 +46,15 @@ export function resolvePath(
 }
 
 export function getMessagesOrError<Messages extends AbstractIntlMessages>({
+  locale,
   messages,
   namespace,
+  onError = defaultOnError,
 }: {
+  locale: string;
   messages: Messages;
   namespace?: string;
+  onError?: (error: IntlError) => void;
 }) {
   try {
     if (!messages) {
@@ -51,7 +62,7 @@ export function getMessagesOrError<Messages extends AbstractIntlMessages>({
     }
 
     const retrievedMessages = namespace
-      ? resolvePath(messages, namespace)
+      ? resolvePath(locale, messages, namespace)
       : messages;
 
     if (!retrievedMessages) {
@@ -60,10 +71,12 @@ export function getMessagesOrError<Messages extends AbstractIntlMessages>({
 
     return retrievedMessages;
   } catch (error) {
-    return new IntlError(
+    const intlError = new IntlError(
       IntlErrorCode.MISSING_MESSAGE,
       (error as Error).message
     );
+    onError(intlError);
+    return intlError;
   }
 }
 
@@ -73,11 +86,17 @@ export function prepareTranslationValues(values: RichTranslationValues) {
   // Workaround for https://github.com/formatjs/formatjs/issues/1467
   const transformedValues: RichTranslationValues = {};
   Object.keys(values).forEach((key) => {
+    let index = 0;
     const value = values[key];
+
     let transformed;
     if (typeof value === 'function') {
-      transformed = (chunks: any) => {
-        return value(chunks);
+      transformed = (chunks: ReactNode) => {
+        const result = value(chunks);
+
+        return isValidElement(result)
+          ? cloneElement(result, { key: key + index++ })
+          : result;
       };
     } else {
       transformed = value;
@@ -100,8 +119,4 @@ export function defaultGetMessageFallback(props: {
   namespace?: string;
 }) {
   return [props.namespace, props.key].filter((part) => part != null).join('.');
-}
-
-export function defaultOnError(error: IntlError) {
-  console.error(error);
 }
