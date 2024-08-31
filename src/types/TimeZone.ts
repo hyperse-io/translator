@@ -419,5 +419,5 @@ export type TimeZone =
   | 'UTC'
   | 'W-SU'
   | 'WET'
-  | 'Zulu'
-  | (string & {});
+  | 'Zulu';
+// | (string & {});

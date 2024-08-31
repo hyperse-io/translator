@@ -105,7 +105,7 @@ export function createBaseTranslatorImpl<
           errorMessage = `Message at \`${joinPath(
             namespace,
             key
-          )}\` resolved to an array, but only strings are supported. See https://next-intl-docs.vercel.app/docs/usage/messages#arrays-of-messages`;
+          )}\` resolved to an array, but only strings are supported.`;
         }
       } else {
         code = IntlErrorCode.INSUFFICIENT_PATH;
@@ -113,7 +113,7 @@ export function createBaseTranslatorImpl<
           errorMessage = `Message at \`${joinPath(
             namespace,
             key
-          )}\` resolved to an object, but only strings are supported. Use a \`.\` to retrieve nested messages. See https://next-intl-docs.vercel.app/docs/usage/messages#structuring-messages`;
+          )}\` resolved to an object, but only strings are supported. Use a \`.\` to retrieve nested messages.`;
         }
       }
 

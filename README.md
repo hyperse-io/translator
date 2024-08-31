@@ -15,9 +15,27 @@
   </a>
 </p>
 
-Translates messages from the given namespace by using the ICU syntax.
+> This library leverages the ICU message format (supported by intl-messageformat) to translate strings from a specified namespace. It enables highly customizable localization, including support for number formatting, date formatting, pluralization, and selective message variations.
 
-## Usage
+> This library is a translation solution designed specifically for Node.js-based business applications, with a particular focus on enhancing the translation of EDM (Email Delivery Management) messages. It provides a unified approach to handling translations, ensuring consistency across both React and Node.js environments.
+
+## Key Features:
+
+- Node.js-centric: Built specifically for Node.js applications, catering to the needs of server-side translation.
+- EDM Focus: Offers robust support for translating EDM messages, ensuring emails are localized effectively.
+- Multi-Platform Support: Works seamlessly in both React and Node.js environments, enabling consistent translation across frontend and backend.
+- Potential for Improved User Experience: By providing a centralized solution for translations, it simplifies localization efforts and ensures consistent language across various touchpoints, enhancing user experience.
+- [React.Email](https://react.email/docs/introduction) international support
+- Perfect type typings for a smooth development experience
+
+## Benefits:
+
+- Simplified Localization: Offers a unified approach to translation, streamlining the process for developers.
+- Enhanced Consistency: Ensures consistent translations across platforms, providing a cohesive user experience.
+- Increased Efficiency: By centralizing translation management, it potentially reduces the effort required for localizing applications.
+- Improved Internationalization: Supports the globalization of applications, making them accessible to a wider audience.
+
+## Usage:
 
 ```ts
 const messages = {
@@ -97,6 +115,81 @@ expect(result2).toBe('Ordered on 11/20/20');
 expect(result3).toBe('Ordered on 11/20/2020');
 ```
 
+### Currency format
+
+```ts
+const order = {
+  total: 123456 / 100,
+  currencyCode: 'USD',
+};
+
+const languageCode = 'en';
+
+const formatter = createFormatter({
+  locale: languageCode,
+});
+
+expect(
+  formatter.number(order.total, {
+    style: 'currency',
+    currency: order.currencyCode,
+  })
+).toBe('$1,234.56');
+
+expect(
+  formatter.number(order.total, {
+    style: 'currency',
+    currency: 'GBP',
+  })
+).toBe('£1,234.56');
+```
+
+### Date and time formatting
+
+```ts
+const languageCode = 'en';
+
+const formatter = createFormatter({
+  locale: languageCode,
+});
+
+it('should correct render numeric datetime', () => {
+  const dateTime = new Date('2020-11-20T10:36:01.516Z');
+  expect(
+    formatter.dateTime(dateTime, {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+    })
+  ).toBe('Nov 20, 2020');
+
+  expect(
+    formatter.dateTime(dateTime, {
+      hour: 'numeric',
+      minute: 'numeric',
+      timeZone: 'UTC',
+    })
+  ).toBe('10:36 AM');
+});
+
+it('should correct format relative times', () => {
+  let dateTime = new Date('2020-11-20T08:30:00.000Z');
+
+  // At 2020-11-20T10:36:00.000Z, this will render "2 hours ago"
+  expect(
+    formatter.relativeTime(dateTime, new Date('2020-11-20T10:36:00.000Z'))
+  ).toBe('2 hours ago');
+
+  dateTime = new Date('2020-03-20T08:30:00.000Z');
+  const now = new Date('2020-11-22T10:36:00.000Z');
+
+  // Renders "247 days ago"
+  expect(formatter.relativeTime(dateTime, { now, unit: 'day' })).toBe(
+    '247 days ago'
+  );
+});
+```
+
 ### Cardinal pluralization
 
 ```ts
@@ -113,7 +206,3 @@ expect(
   })
 ).toBe('简体中文');
 ```
-
-## Reference extract core code from `next-intl` in order to run nodejs
-
-https://next-intl-docs.vercel.app/docs/usage/dates-times
