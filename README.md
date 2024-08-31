@@ -113,3 +113,7 @@ expect(
   })
 ).toBe('简体中文');
 ```
+
+## Reference extract core code from `next-intl` in order to run nodejs
+
+https://next-intl-docs.vercel.app/docs/usage/dates-times

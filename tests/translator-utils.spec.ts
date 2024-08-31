@@ -1,4 +1,5 @@
-import { resolveNamespace, resolvePath } from '../src/utils.js';
+import { resolveNamespace } from '../src/utils/resolveNamespace.js';
+import { resolvePath } from '../src/utils/resolvePath.js';
 
 describe('Translator utils should correct', () => {
   it('Should correct handle resolve namespace', () => {

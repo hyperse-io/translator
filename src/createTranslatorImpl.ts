@@ -1,28 +1,25 @@
-import { createBaseTranslator } from './create-base-translator.js';
-import type {
-  AbstractIntlMessages,
-  InitializedIntlConfiguration,
-  NestedKeyOf,
-} from './translator.type.js';
-import { resolveNamespace } from './utils.js';
+import { createBaseTranslator } from './createBaseTranslator.js';
+import { Formatters, IntlCache } from './formatter/formatters.js';
+import { AbstractIntlMessages } from './types/AbstractIntlMessages.js';
+import { InitializedIntlConfig } from './types/IntlConfig.js';
+import { NestedKeyOf } from './types/NestedKeyOf.js';
+import { resolveNamespace } from './utils/resolveNamespace.js';
 
-export type CreateTranslatorImplProps<Messages> =
-  InitializedIntlConfiguration & {
-    namespace: string;
-    messages: Messages;
-  };
+export type CreateTranslatorImplProps<Messages> = Omit<
+  InitializedIntlConfig,
+  'messages'
+> & {
+  namespace: string;
+  messages: Messages;
+  formatters: Formatters;
+  cache: IntlCache;
+};
 
 export function createTranslatorImpl<
   Messages extends AbstractIntlMessages,
   NestedKey extends NestedKeyOf<Messages>,
 >(
-  {
-    messages,
-    namespace,
-    getMessageFallback,
-    onError,
-    ...rest
-  }: CreateTranslatorImplProps<Messages>,
+  { messages, namespace, ...rest }: CreateTranslatorImplProps<Messages>,
   namespacePrefix: string
 ) {
   // The `namespacePrefix` is part of the type system.
@@ -31,8 +28,6 @@ export function createTranslatorImpl<
   namespace = resolveNamespace(namespace, namespacePrefix) as NestedKey;
   const translator = createBaseTranslator<Messages, NestedKey>({
     ...rest,
-    onError,
-    getMessageFallback,
     namespace,
     messages,
   });

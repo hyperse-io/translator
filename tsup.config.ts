@@ -6,7 +6,7 @@ export default defineConfig((options) => ({
   splitting: false,
   sourcemap: !options.watch,
   clean: true,
-  minify: !options.watch,
+  minify: false,
   treeshake: true,
   tsconfig: './tsconfig.build.json',
   format: ['esm'],

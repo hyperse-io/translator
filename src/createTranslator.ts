@@ -1,17 +1,20 @@
 import { ReactElement, ReactNode } from 'react';
 import type { Formats } from 'intl-messageformat';
-import { createTranslatorImpl } from './create-translator-impl.js';
-import { defaultOnError } from './defaults.js';
-import type {
-  AbstractIntlMessages,
-  IntlConfiguration,
-  MessageKeys,
-  NamespaceKeys,
-  NestedKeyOf,
-  NestedValueOf,
-  RichTranslationValues,
-} from './translator.type.js';
-import { defaultGetMessageFallback } from './utils.js';
+import { createTranslatorImpl } from './createTranslatorImpl.js';
+import { defaultGetMessageFallback, defaultOnError } from './defaults.js';
+import {
+  createCache,
+  createIntlFormatters,
+  Formatters,
+  IntlCache,
+} from './formatter/formatters.js';
+import { AbstractIntlMessages } from './types/AbstractIntlMessages.js';
+import { IntlConfig } from './types/IntlConfig.js';
+import { MessageKeys } from './types/MessageKeys.js';
+import { NamespaceKeys } from './types/NamespaceKeys.js';
+import { NestedKeyOf } from './types/NestedKeyOf.js';
+import { NestedValueOf } from './types/NestedValueOf.js';
+import { RichTranslationValues } from './types/TranslationValues.js';
 
 /**
  * Translates messages from the given namespace by using the ICU syntax.
@@ -28,15 +31,22 @@ export function createTranslator<
     NestedKeyOf<IntlMessages>
   > = never,
 >({
-  onError = defaultOnError,
-  getMessageFallback = defaultGetMessageFallback,
+  _cache = createCache(),
+  _formatters = createIntlFormatters(_cache),
   messages,
   namespace,
+  onError = defaultOnError,
+  getMessageFallback = defaultGetMessageFallback,
   ...rest
-}: IntlConfiguration & {
+}: Omit<IntlConfig<IntlMessages>, 'defaultTranslationValues' | 'messages'> & {
   messages: IntlMessages;
   namespace?: NestedKey;
-}): {
+  /** @private */
+  _formatters?: Formatters;
+  /** @private */
+  _cache?: IntlCache;
+}): // Explicitly defining the return type is necessary as TypeScript would get it wrong
+{
   // Default invocation
   <
     TargetKey extends MessageKeys<
@@ -85,6 +95,8 @@ export function createTranslator<
   >(
     {
       ...rest,
+      cache: _cache,
+      formatters: _formatters,
       onError,
       getMessageFallback,
       messages: { '!': messages },

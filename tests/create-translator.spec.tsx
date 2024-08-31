@@ -1,8 +1,8 @@
 import { isValidElement } from 'react';
 import { renderToString } from 'react-dom/server';
-import { createTranslator } from '../src/create-translator.js';
-import type { IntlError } from '../src/intl-error.js';
-import { IntlErrorCode } from '../src/intl-error.js';
+import { createTranslator } from '../src/createTranslator.js';
+import type { IntlError } from '../src/IntlError.js';
+import { IntlErrorCode } from '../src/IntlError.js';
 
 describe('Translator Service', () => {
   const messages = {
