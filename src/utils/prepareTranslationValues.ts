@@ -1,5 +1,6 @@
-import { cloneElement, isValidElement, ReactNode } from 'react';
-import { RichTranslationValues } from '../types/TranslationValues.js';
+import type { ReactNode } from 'react';
+import { cloneElement, isValidElement } from 'react';
+import type { RichTranslationValues } from '../types/TranslationValues.js';
 
 export function prepareTranslationValues(values: RichTranslationValues) {
   if (Object.keys(values).length === 0) return undefined;

@@ -1,5 +1,6 @@
 import type { IntlMessageFormat } from 'intl-messageformat';
-import { Cache, memoize, strategies } from '@formatjs/fast-memoize';
+import type { Cache } from '@formatjs/fast-memoize';
+import { memoize, strategies } from '@formatjs/fast-memoize';
 
 export type IntlCache = {
   dateTime: Record<string, Intl.DateTimeFormat>;

@@ -1,8 +1,8 @@
 import { createBaseTranslator } from './createBaseTranslator.js';
-import { Formatters, IntlCache } from './formatter/formatters.js';
-import { AbstractIntlMessages } from './types/AbstractIntlMessages.js';
-import { InitializedIntlConfig } from './types/IntlConfig.js';
-import { NestedKeyOf } from './types/NestedKeyOf.js';
+import type { Formatters, IntlCache } from './formatter/formatters.js';
+import type { AbstractIntlMessages } from './types/AbstractIntlMessages.js';
+import type { InitializedIntlConfig } from './types/IntlConfig.js';
+import type { NestedKeyOf } from './types/NestedKeyOf.js';
 import { resolveNamespace } from './utils/resolveNamespace.js';
 
 export type CreateTranslatorImplProps<Messages> = Omit<

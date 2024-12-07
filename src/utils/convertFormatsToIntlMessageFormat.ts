@@ -1,7 +1,8 @@
-import { Formats as IntlFormats, IntlMessageFormat } from 'intl-messageformat';
-import { DateTimeFormatOptions } from '../types/DateTimeFormatOptions.js';
-import { Formats } from '../types/Formats.js';
-import { TimeZone } from '../types/TimeZone.js';
+import type { Formats as IntlFormats } from 'intl-messageformat';
+import { IntlMessageFormat } from 'intl-messageformat';
+import type { DateTimeFormatOptions } from '../types/DateTimeFormatOptions.js';
+import type { Formats } from '../types/Formats.js';
+import type { TimeZone } from '../types/TimeZone.js';
 
 function setTimeZoneInFormats(
   formats: Record<string, DateTimeFormatOptions> | undefined,

@@ -1,6 +1,6 @@
 import { defaultOnError } from '../defaults.js';
 import { IntlError, IntlErrorCode } from '../IntlError.js';
-import { AbstractIntlMessages } from '../types/AbstractIntlMessages.js';
+import type { AbstractIntlMessages } from '../types/AbstractIntlMessages.js';
 import { resolvePath } from './resolvePath.js';
 
 export function getMessagesOrError<Messages extends AbstractIntlMessages>(

@@ -1,8 +1,8 @@
-import { Formats as IntlFormats } from 'intl-messageformat';
-import { IntlError } from '../IntlError.js';
-import { AbstractIntlMessages } from './AbstractIntlMessages.js';
-import { TimeZone } from './TimeZone.js';
-import { RichTranslationValues } from './TranslationValues.js';
+import type { Formats as IntlFormats } from 'intl-messageformat';
+import type { IntlError } from '../IntlError.js';
+import type { AbstractIntlMessages } from './AbstractIntlMessages.js';
+import type { TimeZone } from './TimeZone.js';
+import type { RichTranslationValues } from './TranslationValues.js';
 
 export type IntlConfig<Messages = AbstractIntlMessages> = {
   /**

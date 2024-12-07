@@ -1,4 +1,4 @@
-import { AbstractIntlMessages } from '../types/AbstractIntlMessages.js';
+import type { AbstractIntlMessages } from '../types/AbstractIntlMessages.js';
 import { joinPath } from './joinPath.js';
 
 export function resolvePath(

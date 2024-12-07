@@ -1,4 +1,4 @@
-import { IntlError } from './IntlError.js';
+import type { IntlError } from './IntlError.js';
 import { joinPath } from './utils/joinPath.js';
 
 /**

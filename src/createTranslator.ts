@@ -1,20 +1,16 @@
-import { ReactElement, ReactNode } from 'react';
+import type { ReactElement, ReactNode } from 'react';
 import type { Formats } from 'intl-messageformat';
 import { createTranslatorImpl } from './createTranslatorImpl.js';
 import { defaultGetMessageFallback, defaultOnError } from './defaults.js';
-import {
-  createCache,
-  createIntlFormatters,
-  Formatters,
-  IntlCache,
-} from './formatter/formatters.js';
-import { AbstractIntlMessages } from './types/AbstractIntlMessages.js';
-import { IntlConfig } from './types/IntlConfig.js';
-import { MessageKeys } from './types/MessageKeys.js';
-import { NamespaceKeys } from './types/NamespaceKeys.js';
-import { NestedKeyOf } from './types/NestedKeyOf.js';
-import { NestedValueOf } from './types/NestedValueOf.js';
-import { RichTranslationValues } from './types/TranslationValues.js';
+import type { Formatters, IntlCache } from './formatter/formatters.js';
+import { createCache, createIntlFormatters } from './formatter/formatters.js';
+import type { AbstractIntlMessages } from './types/AbstractIntlMessages.js';
+import type { IntlConfig } from './types/IntlConfig.js';
+import type { MessageKeys } from './types/MessageKeys.js';
+import type { NamespaceKeys } from './types/NamespaceKeys.js';
+import type { NestedKeyOf } from './types/NestedKeyOf.js';
+import type { NestedValueOf } from './types/NestedValueOf.js';
+import type { RichTranslationValues } from './types/TranslationValues.js';
 
 /**
  * Translates messages from the given namespace by using the ICU syntax.

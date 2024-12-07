@@ -12,6 +12,7 @@
     "moduleResolution": "Node",
     "lib": ["dom", "dom.iterable", "esnext"],
     "isolatedModules": true,
+    "verbatimModuleSyntax": false,
     "jsx": "preserve"
   },
   "exclude": ["**/node_modules", "**/.*/", "dist", "build"],
