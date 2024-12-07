@@ -1,5 +1,11 @@
 # @hyperse/translator
 
+## 1.2.2
+
+### Patch Changes
+
+- [`0cdd3a6`](https://github.com/hyperse-io/translator/commit/0cdd3a693c00fe9f17b303c65928c333726ae434) Thanks [@tianyingchun](https://github.com/tianyingchun)! - bump react to 19.0.0
+
 ## 1.2.1
 
 ### Patch Changes
