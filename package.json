@@ -1,6 +1,6 @@
 {
   "name": "@hyperse/translator",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "Translates messages from the given namespace by using the ICU syntax.",
   "keywords": [
     "hyperse",
