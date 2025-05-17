@@ -1,5 +1,13 @@
 # @hyperse/translator
 
+## 1.2.3
+
+### Patch Changes
+
+- [`c384a10`](https://github.com/hyperse-io/translator/commit/c384a1056af181eaef685633fe48630b04ecf63e) Thanks [@tianyingchun](https://github.com/tianyingchun)! - bump version
+
+- [`c384a10`](https://github.com/hyperse-io/translator/commit/c384a1056af181eaef685633fe48630b04ecf63e) Thanks [@tianyingchun](https://github.com/tianyingchun)! - bump version
+
 ## 1.2.2
 
 ### Patch Changes
