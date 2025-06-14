@@ -20,7 +20,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "vitest.config.ts",
+    "vitest.config.mts",
     "src/main.mts"
   ]
 }
