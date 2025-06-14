@@ -15,25 +15,27 @@
   </a>
 </p>
 
-> This library leverages the ICU message format (supported by intl-messageformat) to translate strings from a specified namespace. It enables highly customizable localization, including support for number formatting, date formatting, pluralization, and selective message variations.
+@hyperse/translator is a powerful internationalization library that leverages ICU message format for Node.js and React applications. It provides a unified solution for translating content, with special emphasis on Email Delivery Management (EDM).
 
-> This library is a translation solution designed specifically for Node.js-based business applications, with a particular focus on enhancing the translation of EDM (Email Delivery Management) messages. It provides a unified approach to handling translations, ensuring consistency across both React and Node.js environments.
+## Features
 
-## Key Features:
+- 🚀 **Universal Platform Support**: Seamlessly works in both Node.js and React environments
+- 📧 **EDM-Optimized**: First-class support for email content localization
+- 🌐 **ICU Message Format**: Supports complex translations including:
+  - Number formatting
+  - Date formatting
+  - Pluralization
+  - Selective variations
+- ✨ **React.Email Integration**: Built-in support for [React.Email](https://react.email/docs/introduction) internationalization
+- 🔍 **Type-Safe**: Comprehensive TypeScript definitions for enhanced developer experience
+- 🎯 **Centralized Management**: Single source of truth for all translations
 
-- Node.js-centric: Built specifically for Node.js applications, catering to the needs of server-side translation.
-- EDM Focus: Offers robust support for translating EDM messages, ensuring emails are localized effectively.
-- Multi-Platform Support: Works seamlessly in both React and Node.js environments, enabling consistent translation across frontend and backend.
-- Potential for Improved User Experience: By providing a centralized solution for translations, it simplifies localization efforts and ensures consistent language across various touchpoints, enhancing user experience.
-- [React.Email](https://react.email/docs/introduction) international support
-- Perfect type typings for a smooth development experience
+## Why Choose @hyperse/translator?
 
-## Benefits:
-
-- Simplified Localization: Offers a unified approach to translation, streamlining the process for developers.
-- Enhanced Consistency: Ensures consistent translations across platforms, providing a cohesive user experience.
-- Increased Efficiency: By centralizing translation management, it potentially reduces the effort required for localizing applications.
-- Improved Internationalization: Supports the globalization of applications, making them accessible to a wider audience.
+- **Developer Friendly**: Intuitive API with excellent TypeScript support
+- **Consistent Experience**: Unified translation approach across frontend and backend
+- **Efficient Workflow**: Centralized translation management reduces development overhead
+- **Global Ready**: Built for international applications with comprehensive localization features
 
 ## Usage:
 
