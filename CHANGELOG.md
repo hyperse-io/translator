@@ -1,5 +1,11 @@
 # @hyperse/translator
 
+## 1.2.4
+
+### Patch Changes
+
+- [#6](https://github.com/hyperse-io/translator/pull/6) [`5b5b7ab`](https://github.com/hyperse-io/translator/commit/5b5b7ab79a6ed862beac1d2eff443195273181ec) Thanks [@tclxshunquan-wang](https://github.com/tclxshunquan-wang)! - fix: update AbstractIntlMessages type to use object instead of recursive type
+
 ## 1.2.3
 
 ### Patch Changes
