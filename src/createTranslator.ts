@@ -1,7 +1,11 @@
 import type { ReactElement, ReactNode } from 'react';
 import type { Formats } from 'intl-messageformat';
 import { createTranslatorImpl } from './createTranslatorImpl.js';
-import { defaultGetMessageFallback, defaultOnError } from './defaults.js';
+import {
+  defaultGetMessageFallback,
+  defaultOnError,
+  defaultPlainMessageCheck,
+} from './defaults.js';
 import type { Formatters, IntlCache } from './formatter/formatters.js';
 import { createCache, createIntlFormatters } from './formatter/formatters.js';
 import type { AbstractIntlMessages } from './types/AbstractIntlMessages.js';
@@ -33,6 +37,7 @@ export function createTranslator<
   namespace,
   onError = defaultOnError,
   getMessageFallback = defaultGetMessageFallback,
+  plainMessageCheck = defaultPlainMessageCheck,
   ...rest
 }: Omit<IntlConfig<IntlMessages>, 'defaultTranslationValues' | 'messages'> & {
   messages: IntlMessages;
@@ -95,6 +100,7 @@ export function createTranslator<
       formatters: _formatters,
       onError,
       getMessageFallback,
+      plainMessageCheck,
       messages: { '!': messages },
       namespace: namespace ? `!.${namespace}` : '!',
     },

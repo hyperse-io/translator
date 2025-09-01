@@ -34,44 +34,46 @@
       "path": "cz-conventional-changelog"
     }
   },
-  "resolutions": {
-    "vite": "7.0.0-beta.1"
-  },
   "dependencies": {
     "@formatjs/fast-memoize": "^2.2.7",
     "intl-messageformat": "^10.7.16"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.5.1",
-    "@changesets/cli": "^2.29.4",
+    "@changesets/cli": "^2.29.6",
     "@commitlint/cli": "^19.8.1",
     "@commitlint/config-conventional": "^19.8.1",
-    "@hyperse/eslint-config-hyperse": "^1.4.5",
+    "@hyperse/eslint-config-hyperse": "^1.4.7",
     "@hyperse/ts-node-paths": "^1.0.12",
-    "@types/node": "^24.0.1",
-    "@types/react": "^19.1.8",
-    "@types/react-dom": "^19.1.6",
-    "@vitejs/plugin-react": "^4.5.2",
-    "@vitest/coverage-istanbul": "^3.2.3",
+    "@types/node": "^24.3.0",
+    "@types/react": "^19.1.12",
+    "@types/react-dom": "^19.1.9",
+    "@vitejs/plugin-react": "^5.0.2",
+    "@vitest/coverage-istanbul": "^3.2.4",
     "commitizen": "^4.3.1",
     "cz-conventional-changelog": "^3.3.0",
-    "dotenv": "^16.5.0",
-    "eslint": "^9.29.0",
+    "dotenv": "^17.2.1",
+    "eslint": "^9.34.0",
     "husky": "^9.1.7",
-    "lint-staged": "^16.1.0",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0",
+    "lint-staged": "^16.1.5",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
     "tsup": "^8.5.0",
-    "typescript": "^5.8.3",
-    "vite": "^6.3.5",
-    "vitest": "^3.2.3"
+    "typescript": "^5.9.2",
+    "vite": "^7.1.4",
+    "vitest": "^3.2.4"
   },
   "peerDependencies": {
     "react": "*"
   },
-  "packageManager": "yarn@4.9.2",
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    }
+  },
+  "packageManager": "yarn@4.9.4",
   "engines": {
-    "node": ">=18"
+    "node": ">=20"
   },
   "publishConfig": {
     "access": "public"

@@ -17,3 +17,11 @@ export function defaultGetMessageFallback(props: {
 export function defaultOnError(error: IntlError) {
   console.error(error);
 }
+
+/**
+ * Default function to check if a message is plain (has no placeholders).
+ * Checks for '<' or '{' characters which indicate rich text or ICU placeholders.
+ */
+export function defaultPlainMessageCheck(message: string): boolean {
+  return !/<|{/.test(message);
+}

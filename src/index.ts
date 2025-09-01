@@ -1,2 +1,2 @@
 export * from './createTranslator.js';
-export * from './formatter/createFormatter.js';
+export * from './defaults.js';

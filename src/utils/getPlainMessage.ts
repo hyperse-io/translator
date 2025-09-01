@@ -1,14 +1,20 @@
-export function getPlainMessage(candidate: string, values?: unknown) {
+import type { PlainMessageCheck } from '../types/IntlConfig.js';
+
+export function getPlainMessage(
+  candidate: string,
+  values?: unknown,
+  plainMessageCheck?: PlainMessageCheck
+) {
   if (values) return undefined;
 
   const unescapedMessage = candidate.replace(/'([{}])/gi, '$1');
 
-  // Placeholders can be in the message if there are default values,
-  // or if the user has forgotten to provide values. In the latter
-  // case we need to compile the message to receive an error.
-  const hasPlaceholders = /<|{/.test(unescapedMessage);
+  // Use the provided check function or fall back to the default logic
+  const checkFunction =
+    plainMessageCheck || ((message: string) => !/<|{/.test(message));
+  const isPlain = checkFunction(unescapedMessage);
 
-  if (!hasPlaceholders) {
+  if (isPlain) {
     return unescapedMessage;
   }
 

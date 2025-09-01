@@ -208,3 +208,35 @@ expect(
   })
 ).toBe('简体中文');
 ```
+
+### Custom Plain Message Check
+
+You can customize how the library determines if a message is plain (has no placeholders) by providing a `plainMessageCheck` function:
+
+```ts
+const t = createTranslator({
+  locale: 'en',
+  messages: {
+    Home: {
+      title: 'Hello world!',
+      command: 'hps deploy -t <target> -f [filter]',
+      rich: '<b>Hello <i>{name}</i>!</b>',
+    },
+  },
+  // Custom plain message check function
+  plainMessageCheck: (message: string) => {
+    // Treat messages containing 'hps deploy' as plain, regardless of < or { characters
+    if (message.includes('hps deploy')) {
+      return true;
+    }
+    // Default behavior for other messages
+    return !/<|{/.test(message);
+  },
+});
+
+// This will return the message as-is because our custom check treats it as plain
+expect(t('command')).toBe('hps deploy -t <target> -f [filter]');
+
+// This will still work normally with placeholders
+expect(t('rich', { name: 'world' })).toBe('<b>Hello <i>world</i>!</b>');
+```

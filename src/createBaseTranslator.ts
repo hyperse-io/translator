@@ -56,6 +56,7 @@ export function createBaseTranslatorImpl<
   messagesOrError,
   namespace,
   onError,
+  plainMessageCheck,
   timeZone,
 }: CreateBaseTranslatorProps<Messages>) {
   function getFallbackFromErrorAndNotify(
@@ -124,7 +125,11 @@ export function createBaseTranslatorImpl<
     let messageFormat: IntlMessageFormat;
 
     // Hot path that avoids creating an `IntlMessageFormat` instance
-    const plainMessage = getPlainMessage(message as string, values);
+    const plainMessage = getPlainMessage(
+      message as string,
+      values,
+      plainMessageCheck
+    );
     if (plainMessage) return plainMessage;
 
     // Lazy init the message formatter for better tree

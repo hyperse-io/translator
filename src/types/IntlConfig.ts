@@ -4,6 +4,12 @@ import type { AbstractIntlMessages } from './AbstractIntlMessages.js';
 import type { TimeZone } from './TimeZone.js';
 import type { RichTranslationValues } from './TranslationValues.js';
 
+/**
+ * Function to check if a message is plain (has no placeholders).
+ * Should return true if the message is plain, false otherwise.
+ */
+export type PlainMessageCheck = (message: string) => boolean;
+
 export type IntlConfig<Messages = AbstractIntlMessages> = {
   /**
    * A valid Unicode locale tag (e.g. "en" or "en_GB").
@@ -18,19 +24,28 @@ export type IntlConfig<Messages = AbstractIntlMessages> = {
    * A time zone as defined in [the tz database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) which will be applied when formatting dates and times. If this is absent, the user time zone will be used. You can override this by supplying an explicit time zone to `formatDateTime`.
    */
   timeZone?: TimeZone;
-  /** This callback will be invoked when an error is encountered during
+  /**
+   * This callback will be invoked when an error is encountered during
    * resolving a message or formatting it. This defaults to `console.error` to
    * keep your app running. You can customize the handling by taking
-   * `error.code` into account. */
+   * `error.code` into account.
+   */
   onError?(error: IntlError): void;
-  /** Will be called when a message couldn't be resolved or formatting it led to
+  /**
+   * Will be called when a message couldn't be resolved or formatting it led to
    * an error. This defaults to `${namespace}.${key}` You can use this to
-   * customize what will be rendered in this case. */
+   * customize what will be rendered in this case.
+   */
   getMessageFallback?(info: {
     error: IntlError;
     key: string;
     namespace?: string;
   }): string;
+  /**
+   * Function to check if a message is plain (has no placeholders).
+   * Defaults to checking for '<' or '{' characters.
+   */
+  plainMessageCheck?: PlainMessageCheck;
   /**
    * Providing this value will have two effects:
    * 1. It will be used as the default for the `now` argument of
@@ -61,4 +76,5 @@ export type InitializedIntlConfig<Messages = AbstractIntlMessages> =
   IntlConfig<Messages> & {
     onError: NonNullable<IntlConfig['onError']>;
     getMessageFallback: NonNullable<IntlConfig['getMessageFallback']>;
+    plainMessageCheck: NonNullable<IntlConfig['plainMessageCheck']>;
   };
