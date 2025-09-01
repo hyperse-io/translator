@@ -1,5 +1,11 @@
 # @hyperse/translator
 
+## 1.3.0
+
+### Minor Changes
+
+- [`c020f1a`](https://github.com/hyperse-io/translator/commit/c020f1a6281b410c6d87183dec229fbfc77bdfbc) Thanks [@tyc15129](https://github.com/tyc15129)! - Enhanced the plain message check functionality in the translation system
+
 ## 1.2.4
 
 ### Patch Changes
