@@ -1,5 +1,11 @@
 # @hyperse/translator
 
+## 1.3.1
+
+### Patch Changes
+
+- [`0ef331f`](https://github.com/hyperse-io/translator/commit/0ef331fcc499576b1746e5a378ea2a935c6a98d8) Thanks [@tyc15129](https://github.com/tyc15129)! - Add `react` as depenency
+
 ## 1.3.0
 
 ### Minor Changes
