@@ -36,14 +36,15 @@
   },
   "dependencies": {
     "@formatjs/fast-memoize": "^2.2.7",
-    "intl-messageformat": "^10.7.16"
+    "intl-messageformat": "^10.7.16",
+    "react": "^19.1.1"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.5.1",
     "@changesets/cli": "^2.29.6",
     "@commitlint/cli": "^19.8.1",
     "@commitlint/config-conventional": "^19.8.1",
-    "@hyperse/eslint-config-hyperse": "^1.4.7",
+    "@hyperse/eslint-config-hyperse": "^1.4.8",
     "@hyperse/ts-node-paths": "^1.0.12",
     "@types/node": "^24.3.0",
     "@types/react": "^19.1.12",
@@ -55,21 +56,13 @@
     "dotenv": "^17.2.1",
     "eslint": "^9.34.0",
     "husky": "^9.1.7",
-    "lint-staged": "^16.1.5",
+    "lint-staged": "^16.1.6",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "tsup": "^8.5.0",
     "typescript": "^5.9.2",
     "vite": "^7.1.4",
     "vitest": "^3.2.4"
-  },
-  "peerDependencies": {
-    "react": "*"
-  },
-  "peerDependenciesMeta": {
-    "react": {
-      "optional": true
-    }
   },
   "packageManager": "yarn@4.9.4",
   "engines": {

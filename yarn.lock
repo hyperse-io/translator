@@ -920,7 +920,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@eslint/js@npm:9.34.0, @eslint/js@npm:^9.33.0":
+"@eslint/js@npm:9.34.0, @eslint/js@npm:^9.34.0":
   version: 9.34.0
   resolution: "@eslint/js@npm:9.34.0"
   checksum: 10/3bbe8423e2d11e0eeb70a79f5cd25b89a8920cade36e479e4288d1e01043b48a0d737f46d8e5dc91c53afad5bc0edc882cc5a5a024ac1ac31b0b7b4d4a9f16c0
@@ -1033,14 +1033,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hyperse/eslint-config-hyperse@npm:^1.4.7":
-  version: 1.4.7
-  resolution: "@hyperse/eslint-config-hyperse@npm:1.4.7"
+"@hyperse/eslint-config-hyperse@npm:^1.4.8":
+  version: 1.4.8
+  resolution: "@hyperse/eslint-config-hyperse@npm:1.4.8"
   dependencies:
-    "@eslint/js": "npm:^9.33.0"
-    "@next/eslint-plugin-next": "npm:^15.4.7"
-    "@typescript-eslint/utils": "npm:^8.40.0"
-    "@vitest/eslint-plugin": "npm:^1.3.4"
+    "@eslint/js": "npm:^9.34.0"
+    "@next/eslint-plugin-next": "npm:^15.5.2"
+    "@typescript-eslint/utils": "npm:^8.41.0"
+    "@vitest/eslint-plugin": "npm:^1.3.5"
     app-root-path: "npm:^3.1.0"
     eslint-config-prettier: "npm:^10.1.8"
     eslint-define-config: "npm:^2.1.0"
@@ -1051,17 +1051,17 @@ __metadata:
     eslint-plugin-react-hooks: "npm:^5.2.0"
     eslint-plugin-regexp: "npm:^2.10.0"
     eslint-plugin-simple-import-sort: "npm:^12.1.1"
-    eslint-plugin-sonarjs: "npm:^3.0.4"
+    eslint-plugin-sonarjs: "npm:^3.0.5"
     get-tsconfig: "npm:^4.10.1"
     globals: "npm:^16.3.0"
     prettier: "npm:^3.6.2"
     prettier-plugin-tailwindcss: "npm:^0.6.14"
     tailwindcss: "npm:^4.1.12"
-    typescript-eslint: "npm:^8.40.0"
+    typescript-eslint: "npm:^8.41.0"
   peerDependencies:
     eslint: ">=9.3.0"
     typescript: ^5.4.3
-  checksum: 10/ebbc468ec6d740431cc6b84e938e46f18c0eb9c99efb1ed15689c758e9cb9e15a1b7966df52061a0809d71facc9f7379975709383394e7574004a6e901cbc7da
+  checksum: 10/2c21897be043bca8abc28423e460fa2a0d7aca0b5d1d6491c4b320027f945219bbf15862d3c59c4f9ff7fb52ceb465b66ccee980a0b4a4ffc363a6b972d77322
   languageName: node
   linkType: hard
 
@@ -1074,7 +1074,7 @@ __metadata:
     "@commitlint/cli": "npm:^19.8.1"
     "@commitlint/config-conventional": "npm:^19.8.1"
     "@formatjs/fast-memoize": "npm:^2.2.7"
-    "@hyperse/eslint-config-hyperse": "npm:^1.4.7"
+    "@hyperse/eslint-config-hyperse": "npm:^1.4.8"
     "@hyperse/ts-node-paths": "npm:^1.0.12"
     "@types/node": "npm:^24.3.0"
     "@types/react": "npm:^19.1.12"
@@ -1087,18 +1087,13 @@ __metadata:
     eslint: "npm:^9.34.0"
     husky: "npm:^9.1.7"
     intl-messageformat: "npm:^10.7.16"
-    lint-staged: "npm:^16.1.5"
+    lint-staged: "npm:^16.1.6"
     react: "npm:^19.1.1"
     react-dom: "npm:^19.1.1"
     tsup: "npm:^8.5.0"
     typescript: "npm:^5.9.2"
     vite: "npm:^7.1.4"
     vitest: "npm:^3.2.4"
-  peerDependencies:
-    react: "*"
-  peerDependenciesMeta:
-    react:
-      optional: true
   languageName: unknown
   linkType: soft
 
@@ -1221,7 +1216,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@next/eslint-plugin-next@npm:^15.4.7":
+"@next/eslint-plugin-next@npm:^15.5.2":
   version: 15.5.2
   resolution: "@next/eslint-plugin-next@npm:15.5.2"
   dependencies:
@@ -1875,7 +1870,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/utils@npm:8.41.0, @typescript-eslint/utils@npm:^8.24.1, @typescript-eslint/utils@npm:^8.40.0":
+"@typescript-eslint/utils@npm:8.41.0, @typescript-eslint/utils@npm:^8.24.1, @typescript-eslint/utils@npm:^8.41.0":
   version: 8.41.0
   resolution: "@typescript-eslint/utils@npm:8.41.0"
   dependencies:
@@ -1936,9 +1931,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vitest/eslint-plugin@npm:^1.3.4":
-  version: 1.3.5
-  resolution: "@vitest/eslint-plugin@npm:1.3.5"
+"@vitest/eslint-plugin@npm:^1.3.5":
+  version: 1.3.6
+  resolution: "@vitest/eslint-plugin@npm:1.3.6"
   dependencies:
     "@typescript-eslint/scope-manager": "npm:^8.41.0"
     "@typescript-eslint/utils": "npm:^8.24.1"
@@ -1951,7 +1946,7 @@ __metadata:
       optional: true
     vitest:
       optional: true
-  checksum: 10/48fd6c9c6d4470bd13bb88c89e2a0e9624433f99cbff9b9cfe4b3dfd7234ad46c4a0c1be431d2eb56ec754e5a242b6243c00def50e8b3657653060af69dda9b9
+  checksum: 10/95ab8394c123db470202f9153a502d38ca6ee72b51d4e55ea5e8d41bd4b01a2e3f840306b5c00c0473ccc7400f7841044273453ffea59ed1d2532251ec7cc707
   languageName: node
   linkType: hard
 
@@ -2601,7 +2596,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chalk@npm:^5.3.0, chalk@npm:^5.5.0":
+"chalk@npm:^5.3.0, chalk@npm:^5.6.0":
   version: 5.6.0
   resolution: "chalk@npm:5.6.0"
   checksum: 10/f0e0646a72adbd0f6e73441d3872d7f2f40ba98052924f08a30c10634ec6b1e2cd19cc3c40cc21081dad640e2a1a2749030418571690b89bd7782babf7f89866
@@ -3746,7 +3741,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-sonarjs@npm:^3.0.4":
+"eslint-plugin-sonarjs@npm:^3.0.5":
   version: 3.0.5
   resolution: "eslint-plugin-sonarjs@npm:3.0.5"
   dependencies:
@@ -5538,15 +5533,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lint-staged@npm:^16.1.5":
-  version: 16.1.5
-  resolution: "lint-staged@npm:16.1.5"
+"lint-staged@npm:^16.1.6":
+  version: 16.1.6
+  resolution: "lint-staged@npm:16.1.6"
   dependencies:
-    chalk: "npm:^5.5.0"
+    chalk: "npm:^5.6.0"
     commander: "npm:^14.0.0"
     debug: "npm:^4.4.1"
     lilconfig: "npm:^3.1.3"
-    listr2: "npm:^9.0.1"
+    listr2: "npm:^9.0.3"
     micromatch: "npm:^4.0.8"
     nano-spawn: "npm:^1.0.2"
     pidtree: "npm:^0.6.0"
@@ -5554,11 +5549,11 @@ __metadata:
     yaml: "npm:^2.8.1"
   bin:
     lint-staged: bin/lint-staged.js
-  checksum: 10/02b284f89d7b8118e1b27b1f2068017ed84407e57a1166463789caa65f3429f206372c483bc37304ce03dcb30bd1dd3e624f0502ae4973d440fe73cdd04e0747
+  checksum: 10/922b4392ae5d3d56130e4eba706c2fa6151d5da5e21f57ab601b1d6ce9cc635ceb5e4c3dc00e7da83ba8f0cb244b82604469c7ea1470b1e6b6ea0fc12454aa08
   languageName: node
   linkType: hard
 
-"listr2@npm:^9.0.1":
+"listr2@npm:^9.0.3":
   version: 9.0.3
   resolution: "listr2@npm:9.0.3"
   dependencies:
@@ -8633,7 +8628,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript-eslint@npm:^8.40.0":
+"typescript-eslint@npm:^8.41.0":
   version: 8.41.0
   resolution: "typescript-eslint@npm:8.41.0"
   dependencies:
