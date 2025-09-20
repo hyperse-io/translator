@@ -1,5 +1,11 @@
 # @hyperse/translator
 
+## 1.3.2
+
+### Patch Changes
+
+- [`1a15238`](https://github.com/hyperse-io/translator/commit/1a152381ed29251a0f56831bf4bc4b4a469cec96) Thanks [@tyc15129](https://github.com/tyc15129)! - add missed exports `createFormatter`
+
 ## 1.3.1
 
 ### Patch Changes
