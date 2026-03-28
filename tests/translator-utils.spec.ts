@@ -12,13 +12,9 @@ describe('Translator utils should correct', () => {
     expect(resolvePath('en', { name: { age: '1' } }, 'name.age')).toBe('1');
     expect(() =>
       resolvePath('en', { name: { age: '1' } }, 'name.age.c', 'ns')
-    ).toThrowError(
-      /Could not resolve `ns.name.age.c` in messages for locale `en`./
-    );
+    ).toThrow(/Could not resolve `ns.name.age.c` in messages for locale `en`./);
     expect(() =>
       resolvePath('en', { name: { age: '1' } }, 'name.ages', 'ns')
-    ).toThrowError(
-      /Could not resolve `ns.name.ages` in messages for locale `en`./
-    );
+    ).toThrow(/Could not resolve `ns.name.ages` in messages for locale `en`./);
   });
 });
