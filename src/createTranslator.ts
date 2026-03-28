@@ -26,10 +26,8 @@ import type { RichTranslationValues } from './types/TranslationValues.js';
  */
 export function createTranslator<
   IntlMessages extends AbstractIntlMessages,
-  NestedKey extends NamespaceKeys<
-    IntlMessages,
-    NestedKeyOf<IntlMessages>
-  > = never,
+  NestedKey extends NamespaceKeys<IntlMessages, NestedKeyOf<IntlMessages>> =
+    never,
 >({
   _cache = createCache(),
   _formatters = createIntlFormatters(_cache),
