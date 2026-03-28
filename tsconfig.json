@@ -5,7 +5,7 @@
     "rootDir": ".",
     "outDir": "dist",
     "incremental": false,
-    "types": ["vitest/globals"],
+    "types": ["vitest/globals", "node"],
     "paths": {},
     "target": "ES2019",
     "module": "commonjs",
