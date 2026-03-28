@@ -1,5 +1,11 @@
 # @hyperse/translator
 
+## 1.3.3
+
+### Patch Changes
+
+- [`41c2813`](https://github.com/hyperse-io/translator/commit/41c2813dde8e5b339150f7b467732f5266f65038) Thanks [@tianyingchun](https://github.com/tianyingchun)! - bump version
+
 ## 1.3.2
 
 ### Patch Changes
