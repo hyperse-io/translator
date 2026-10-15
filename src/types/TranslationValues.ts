@@ -2,12 +2,7 @@ import type { ReactNode } from 'react';
 
 // From IntlMessageFormat#format
 export type TranslationValue =
-  | string
-  | number
-  | boolean
-  | Date
-  | null
-  | undefined;
+  string | number | boolean | Date | null | undefined;
 
 // We could consider renaming this to `ReactRichTranslationValues` and defining
 // it in the `react` namespace if the core becomes useful to other frameworks.
