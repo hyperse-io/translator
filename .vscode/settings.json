@@ -2,6 +2,7 @@
   "js/ts.tsdk.path": "node_modules/typescript/lib",
   "js/ts.tsdk.promptToUseWorkspaceVersion": true,
   "js/ts.preferences.importModuleSpecifier": "relative",
+  "json.schemaDownload.enable": true,
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "dbaeumer.vscode-eslint",
   "editor.codeActionsOnSave": {
